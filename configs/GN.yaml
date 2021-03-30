@@ -1,0 +1,55 @@
+batch_size: 8
+data_config:
+  kitti:
+    path: datas/kitti
+gpu_ids:
+- 4
+- 5
+loss: MSE
+lr_config:
+  MultiStepLR:
+    gamma: 0.5
+    last_epoch: -1
+    milestones:
+    - 5
+    - 10
+    - 15
+manual_seed: 0
+metric: RMSE
+model: GN
+name: GN
+nepoch: 20
+num_workers: 4
+optim_config:
+  AdamW:
+    lr: 0.001
+    weight_decay: 0.05
+resume_seed: 6288
+start_epoch: 0
+test_aug_configs:
+- Norm:
+    mean:
+    - 90.995
+    - 96.2278
+    - 94.3213
+    std:
+    - 79.2382
+    - 80.5267
+    - 82.1483
+test_epoch: 15
+test_iters: 500
+train_aug_configs:
+- Jitter
+- Flip
+- Norm:
+    mean:
+    - 90.995
+    - 96.2278
+    - 94.3213
+    std:
+    - 79.2382
+    - 80.5267
+    - 82.1483
+tta: true
+vis: true
+vis_iters: 100
